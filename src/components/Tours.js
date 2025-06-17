@@ -1,6 +1,5 @@
 import React from 'react';
 import Tour from './Tour';
-import { destinations } from './App';
 
 const Tours = ({ tours, handleDelete}) => {
 
@@ -9,11 +8,7 @@ const Tours = ({ tours, handleDelete}) => {
       {tours.map((tour) => (
         <Tour
           key={tour.id}
-          id={tour.id}
-          image={tour.image}
-          description={tour.description}
-          price={tour.price}
-          name={tour.name}
+          tour={tour}
           handleDelete={handleDelete}
         />
       ))}
