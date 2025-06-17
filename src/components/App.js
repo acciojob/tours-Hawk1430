@@ -54,6 +54,26 @@ const App = () => {
     },2000)
   },[])
 
+  const refreshStyle = {
+    marginTop: '10px',
+    padding: '8px 12px',
+    border: 'none',
+    backgroundColor: 'rgb(77, 84, 180)',
+    color: '#fff',
+    borderRadius: '5px',
+    cursor: 'pointer'
+  };
+
+  if (tours.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <button style={refreshStyle} onClick={() => setTours(destinations)}>
+          Refresh
+        </button>
+      </div>
+    );
+  }
+
    const handleDelete = (id) => {
     setTours((prev) => prev.filter((item) => item.id !== id));
   };
@@ -61,7 +81,7 @@ const App = () => {
     return(
       <main id="main">
         <div className="loader">{ loading && <Loading />}</div>
-        {!loading && <Tours tours={tours} handleDelete={handleDelete} setTours={setTours}/>}
+        {!loading && <Tours tours={tours} handleDelete={handleDelete}/>}
       </main>
     )
 }
