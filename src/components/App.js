@@ -1,88 +1,88 @@
 import React, { useEffect, useState } from "react";
-import Loading from "./Loading";
 import Tours from "./Tours";
+import Loading from "./Loading";
 
-
-export const destinations = [
+const tourlist = [
   {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    name: "Beach Paradise, Maldives",
-    price: "$799",
-    description: "Imagine waking up to the sound of gentle waves and stepping out onto your private deck suspended over crystal-clear waters. This unforgettable beach vacation in the Maldives offers luxury like no other. Enjoy sunrise yoga sessions, underwater adventures through coral reefs, world-class seafood dining, and spa treatments that rejuvenate your mind and body. It's the perfect escape for couples and dreamers seeking serenity, beauty, and indulgence."
+    "id": "rec6d6T3q5EBIdCfD",
+    "name": "Best of Paris in 7 Days Tour",
+    "info": "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
+    "image": "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
+    "price": "1,995"
   },
   {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1549887534-5303b7c03f77",
-    name: "Mountain Escape, Switzerland",
-    price: "$1299",
-    description: "This exclusive tour takes you through the heart of the Swiss Alps where snow-capped peaks, green valleys, and pristine lakes await. Travel aboard panoramic trains like the Glacier Express, hike scenic mountain trails, and unwind in charming alpine villages. Whether skiing in Zermatt or sipping hot cocoa beside a fireplace in a chalet, you’ll experience a perfect balance of adventure and relaxation surrounded by awe-inspiring natural beauty."
+    "id": "recIwxrvU9HfJR3B4",
+    "name": "Best of Ireland in 14 Days Tour",
+    "info": "Rick Steves' Best of Ireland tour kicks off with the best of Dublin, followed by Ireland's must-see historical sites, charming towns, music-filled pubs, and seaside getaways — including Kinsale, the Dingle Peninsula, the Cliffs of Moher, the Aran Islands, Galway, Connemara, Giant's Causeway, and the compelling city of Belfast. All along the way, Rick's guides will share their stories to draw you in to the Emerald Isle, and the friendliness of the people will surely steal your heart. Join us for the Best of Ireland in 14 Days!",
+    "image": "https://dl.airtable.com/.attachments/6c24084000a3777064c5200a8c2ae931/04081a3e/ireland.jpeg",
+    "price": "3,895"
   },
   {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad",
-    name: "Safari Adventure, Kenya",
-    price: "$999",
-    description: "Dive into the wild landscapes of Kenya on a guided safari that brings you face-to-face with lions, elephants, giraffes, and more in their natural habitat. Wake up to sunrise game drives across golden savannahs, dine under starlit skies, and connect with local Maasai communities. This tour blends thrilling wildlife encounters with luxurious lodging and cultural depth, offering an authentic African adventure you’ll remember forever."
+    "id": "recJLWcHScdUtI3ny",
+    "name": "Best of Salzburg & Vienna in 8 Days Tour",
+    "info": "Let's go where classical music, towering castles, and the-hills-are-alive scenery welcome you to the gemütlichkeit of Bavaria and opulence of Austria's Golden Age. Your Rick Steves guide will bring this region's rich history and culture to life in festive Munich, Baroque Salzburg, sparkling Lake Hallstatt, monastic Melk, the blue Danube, and royal Vienna — with cozy villages and alpine vistas all along the way. Join us for the Best of Munich, Salzburg & Vienna in 8 Days!",
+    "image": "https://dl.airtable.com/.attachments/27f6cbfe631e303f98b97e9dafacf25b/6bbe2a07/vienna.jpeg",
+    "price": "2,695"
   },
   {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1",
-    name: "City Lights, Tokyo",
-    price: "$899",
-    description: "Tokyo is a city where ancient traditions meet futuristic innovation. This tour takes you on a whirlwind journey through sacred temples, bustling food markets, quirky fashion districts, and neon-lit nightlife. Discover the serenity of a tea ceremony, the excitement of Shibuya Crossing, and the culinary excellence of sushi prepared by masters. Whether you're tech-savvy or culture-curious, Tokyo will fascinate you at every turn with its energy and elegance."
+    "id": "recK2AOoVhIHPLUwn",
+    "name": "Best of Rome in 7 Days Tour",
+    "info": "Our Rome tour serves up Europe's most intoxicating brew of dazzling art, earth-shaking history, and city life with style. On this Rome vacation, your tour guide will resurrect the grandeur of ancient Rome's Colosseum, Forum, Pantheon, and nearby Ostia Antica. From the Renaissance and Baroque eras, you'll marvel at St. Peter's Basilica, the Vatican Museums, Sistine Chapel, and Borghese Gallery. You'll also enjoy today's Rome, with neighborhood walking tours, memorable restaurants, and time to explore on your own. Join us for the Best of Rome in 7 Days!",
+    "image": "https://dl.airtable.com/.attachments/3efa7aa402d49c12b8769c581a96af42/d5b641e3/italy.jpeg",
+    "price": "2,095"
   },
   {
-    id: 5,
-    image: "https://images.unsplash.com/photo-1560523160-754a9e2748a0",
-    name: "Historic Europe Tour",
-    price: "$1499",
-    description: "Step back in time as you explore the cultural capitals of Europe—Rome, Paris, and Berlin. Walk through ancient ruins in Rome, gaze upon masterpieces at the Louvre, and witness modern history at the Berlin Wall. This 10-day tour offers a rich blend of architecture, art, cuisine, and storytelling. Perfect for history buffs and first-time visitors alike, it’s a chance to experience Europe’s legendary past and vibrant present in one incredible journey."
+    "id": "receAEzz86KzW2gvH",
+    "name": "Best of Poland in 10 Days Tour",
+    "info": "Starting in the colorful port city of Gdańsk, you'll escape the crowds and embrace the understated elegance of ready-for-prime-time Poland for 10 days. With an expert Rick Steves guide at your side, you'll experience mighty Malbork castle, the cobbly-cute village of Toruń, Poland's contemporary capital of Warsaw, the spiritual Jasna Góra Monastery, and charming Kraków — Poland's finest city. In this land of surprises — so trendy and hip, yet steeped in history — there's so much to discover. Join us for the Best of Poland in 10 Days!",
+    "image": "https://dl.airtable.com/.attachments/3feee7a93af0f4f809312132090c9a80/58e3e8ec/poland.jpeg",
+    "price": "2,595"
   }
-];
-
+]
 
 const App = () => {
+
+  const [tour, setTour] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [tours, setTours] = useState([]);  
 
   useEffect(()=>{
-    setLoading(true)
+    setLoading(true);
     setTimeout(()=>{
-      setTours(destinations)
-      setLoading(false);
-    },2000)
-  },[])
+      setTour(tourlist)
+      setLoading(false)},1000);
+  },[]);
 
-  const refreshStyle = {
-    marginTop: '10px',
-    padding: '8px 12px',
-    border: 'none',
-    backgroundColor: 'rgb(77, 84, 180)',
-    color: '#fff',
-    borderRadius: '5px',
-    cursor: 'pointer'
-  };
-
-  if (tours.length === 0) {
-    return (
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <button style={refreshStyle} onClick={() => setTours(destinations)}>
-          Refresh
-        </button>
-      </div>
-    );
+  const handleDelete = (id)=>{
+    const filteredTour = tour.filter((tour)=>{
+      if(tour.id !== id) return tour;
+    })
+    setTour(filteredTour);
   }
 
-   const handleDelete = (id) => {
-    setTours((prev) => prev.filter((item) => item.id !== id));
-  };
+    if (loading) {
+      return (
+        <div id="main">
+          <Loading />
+        </div>
+      );
+    }
+
+    if(tour.length === 0){
+      return (
+        <div id="main">
+          <div className="title">
+            <h2>No tours left</h2>
+            <button className="btn" onClick={()=>{setTour(tourlist)}}>Refresh</button>
+          </div>
+        </div>
+      )
+    }
 
     return(
-      <main id="main">
-        <div className="loader">{ loading && <Loading />}</div>
-        {!loading && <Tours tours={tours} handleDelete={handleDelete}/>}
-      </main>
+      <div id="main">
+        <Tours tour={tour} handleDelete={handleDelete}/>
+      </div>
     )
+ 
 }
 export default App;

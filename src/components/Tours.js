@@ -1,19 +1,19 @@
-import React from 'react';
-import Tour from './Tour';
+import React from "react"
+import Tour from "./Tour"
 
-const Tours = ({ tours, handleDelete}) => {
+export default function Tours ({tour, handleDelete}){
 
-  return (
-    <div style={{display: "flex", flexWrap:"wrap"}}>
-      {tours.map((tour) => (
-        <Tour
-          key={tour.id}
-          tour={tour}
-          handleDelete={handleDelete}
-        />
-      ))}
-    </div>
-  );
-};
-
-export default Tours;
+    return(
+        <section>
+            <div className="title">
+                <h1>Our Tours</h1>
+            </div>
+            <div>
+            {tour.map((tour)=>{
+                return(
+                <Tour tour={tour} key={tour.id} handleDelete={handleDelete}/>
+            )})}
+            </div>
+        </section>
+    )
+}

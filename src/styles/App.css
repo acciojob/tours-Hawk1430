@@ -1,13 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+h1 {
+    color: #27aedb;
+    text-align: center;
+    }
+    
 
-.loader {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button{
+    color: #27aedb;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
